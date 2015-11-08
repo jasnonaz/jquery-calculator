@@ -1,0 +1,52 @@
+body{
+	background-color: navy;
+}
+.button{
+    border: 2px solid;
+    border-radius: 25px;
+    width: 16%;
+	margin: 3.33%;
+}
+
+#answer{
+	margin-top: 1em;
+	text-align: right;
+	margin-right: 1em;
+}
+
+.buttons{
+	width: 100%;
+	display: inline-block;
+}
+
+#screen{
+    border: 2px solid;
+    border-radius: 25px;
+	height: 3em;
+	width: 100%;
+	font-size: 3em;
+	background-color: white;
+}
+
+.calc{
+	width: 16%;
+	margin: 3.33%;
+	display: inline-block;
+}
+
+.calculator{
+	background-color: white;
+ 	display: block;
+	margin:5em auto;
+	padding: .5em;
+    border: 2px solid;
+    border-radius: 25px;
+}
+
+.calc button{
+	width:45%	;
+}
+
+.test{
+	height: 40em;
+}

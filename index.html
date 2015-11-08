@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+
+
+    <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  
+<link rel="stylesheet" type="text/css" href="main.css">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+<script>
+$(document).ready(function(){
+
+	window.newValue = true;
+	window.currentValue = 0;
+	window.calcValue = 0;
+	window.firstCalc = true;
+	window.chain = false;
+
+	function add(a,b){
+		return a + b;
+	}
+
+	function subtract(a,b){
+		if (chain === false){
+		return b-a;}
+		else{
+			return a-b;
+		}
+	}
+
+	function divide(a,b){
+		if (chain === false){
+		return b / a;}
+		else{
+			return a / b;
+		}
+	}
+
+	function multiply(a,b){
+		return a * b;
+	}
+
+	function execute(){
+		if(storedValue){
+			currentValue = parseFloat(currentValue);
+			storedValue = parseFloat(storedValue);
+			tempStore = currentValue;
+			if(calc === "add"){
+				currentValue = add(window.currentValue, storedValue);
+			}
+			else if(calc==="subt"){
+				currentValue = subtract(currentValue, storedValue);
+			}
+			else if(calc==="mult"){
+				currentValue =multiply(currentValue,storedValue);
+			}
+			else if(calc==="div"){
+				currentValue = divide(currentValue,storedValue)
+			};
+			if(window.firstCalc === true){
+				window.storedValue = tempStore;
+				window.firstCalc = false;
+			};
+			window.chain = true;
+		};
+	};
+
+    $(".numbers").click(function(){
+    	window.firstCalc = true;
+    	if(newValue === true){
+    	window.storedValue = currentValue;
+    	window.currentValue = ($(this).val());
+    	}
+    	else{
+    		currentValue = currentValue.toString() + ($(this).val()).toString()
+    		}
+    	window.newValue = false;
+		$("#screen").html(function(){ 
+			return "<div id='answer'>" + currentValue.toString() + "</div">; }()) 
+    	
+    	});
+
+    $(".calc").click(function(){
+    	   	window.newValue = true;
+    });
+
+
+    $("#equals").click(function(){
+    	   	window.newValue = true;
+    		execute();
+    	   	$("#screen").html(function(){ 
+    		console.log(currentValue);
+		return "<div id='answer'> " + currentValue.toString() + "</div>"}()) 
+    });
+
+    $("#add").click(function(){
+    	window.calc = "add";
+    });
+
+    $("#div").click(function(){
+    	window.calc = "div";
+    });
+
+    $("#mult").click(function(){
+    	window.calc = "mult";
+    });
+
+     $("#subt").click(function(){
+    	window.calc = "subt";
+    });
+
+});
+</script>
+</head>
+<body>
+<dib>
+<div class = "calculator col-md-4">
+	<div id="display">
+		<div id ="screen">
+		</div>
+    </div>
+
+<div class = "buttons number">
+	<button class="button btn numbers" id="#button1" value=1> 1 </button>
+	<button class="button btn numbers" id="b1" value=2> 2 </button>
+	<button class="button btn numbers" id="b1" value=3> 3 </button>
+	<button class="btn button calc" id="div"> / </button>
+	<button class="button btn numbers" id="b1" value=4> 4 </button>
+	<button class="button btn numbers" id="b1" value=5> 5 </button>
+	<button class="button btn numbers" id="b1" value=6> 6 </button>
+	<button class="btn button calc" id="mult"> * </button>
+	<button class="button btn numbers" id="b1" value=7> 7 </button>
+	<button class="button btn numbers" id="b1" value=8> 8 </button>
+	<button class="button btn numbers" id="b1" value=9> 9 </button>
+	<button class="btn button calc" id="subt"> - </button>
+	<button class="button btn numbers" id="b1" value=0> 0 </button>
+	<button class="button btn numbers" id="b1"> . </button>
+	<button class="button btn btn-primary calc" id="equals"> = </button>
+	<button class="btn button calc" id="add"> + </button>
+</div>
+</div>
+</body>
+</html>
